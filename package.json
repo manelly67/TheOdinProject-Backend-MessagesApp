@@ -1,0 +1,43 @@
+{
+  "name": "messageapp-backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/manelly67/TheOdinProject-Backend-MessageApp#readme",
+  "bugs": {
+    "url": "https://github.com/manelly67/TheOdinProject-Backend-MessageApp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manelly67/TheOdinProject-Backend-MessageApp.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "node tests/tests.js",
+    "lint": "eslint .",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "@quixo3/prisma-session-store": "^3.1.13",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.1",
+    "eslint": "^9.25.1",
+    "globals": "^16.0.0",
+    "prisma": "^6.6.0",
+    "supertest": "^7.1.0"
+  }
+}

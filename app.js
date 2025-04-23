@@ -45,7 +45,7 @@ app.use(passport.session());
 
 // routes
 app.use("/", routes.homepage);
-/* app.use("/sign_up", routes.signup); */
+app.use("/sign_up", routes.signup);
 
 // error page
 app.use((req, res) => res.status(404).json({

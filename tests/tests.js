@@ -1,10 +1,10 @@
-const request = require("supertest");
-const express = require("express");
-const routes = require("../routes");
+const request = require('supertest');
+const express = require('express');
 const app = express();
+const routes = require("../routes");
 
+// test initial page
 app.use("/", routes.homepage);
-
 request(app)
   .get("/")
   .expect("Content-Type", /json/)
@@ -16,8 +16,10 @@ request(app)
   .end(function (err, res) {
     if (err) throw err;
   });
+  
 
-  app.use((req, res) => res.status(404).json({
+// test error page
+app.use((req, res) => res.status(404).json({
     message: "oops page not found :)",
     title: "error page"
   }));
@@ -28,4 +30,4 @@ request(app)
   .expect("Content-Type", /json/)
   .end((err, res) => {
     if (err) throw err;
-  });
+  }); 

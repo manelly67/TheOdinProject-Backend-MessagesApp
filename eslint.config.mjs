@@ -25,4 +25,5 @@ export default defineConfig([
       'prefer-destructuring':['error',{'array':true,'object':true},{'enforceForRenamedProperties':false}],
     },  
   },
+  { ignores: ["generated/*"], },
 ]);

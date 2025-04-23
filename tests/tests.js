@@ -16,3 +16,16 @@ request(app)
   .end(function (err, res) {
     if (err) throw err;
   });
+
+  app.use((req, res) => res.status(404).json({
+    message: "oops page not found :)",
+    title: "error page"
+  }));
+  
+  request(app)
+  .get('/nonexistent-url')
+  .expect(404)
+  .expect("Content-Type", /json/)
+  .end((err, res) => {
+    if (err) throw err;
+  });

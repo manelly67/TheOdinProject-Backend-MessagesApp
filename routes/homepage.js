@@ -1,10 +1,10 @@
 const { Router } = require("express");
-const homeController  = require("../controllers/homepage");
+const controller  = require("../controllers/homepage");
 const router = Router();
 
 
 
-router.get("/", homeController.get);
+router.get("/", controller.get);
 
 
 

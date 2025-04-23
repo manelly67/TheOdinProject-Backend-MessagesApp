@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Avatar {
+  id        String    @id @unique
+  name      String
+  src_image String
+  Profile   Profile[]
+}
+
+model Color {
+  id        String    @id @unique
+  name      String
+  colorcode String
+  bgcolor   Profile[] @relation(name: "bgcolor")
+  textcolor Profile[] @relation(name: "textcolor")
+}
+
+model Profile {
+  id          String  @id @unique
+  nametoshow  String?
+  avatar      Avatar? @relation(fields: [avatarId], references: [id])
+  avatarId    String?
+  bgcolor     Color?  @relation(name: "bgcolor", fields: [bgcolorId], references: [id])
+  bgcolorId   String
+  textcolor   Color?  @relation(name: "textcolor", fields: [textcolorId], references: [id])
+  textcolorId String
+  aboutme     String? @db.VarChar(255)
+  User        User[]
+}
+
+model Message {
+  id         String   @id @unique
+  createdAt  DateTime @default(now())
+  text       String   @db.VarChar(255)
+  userFrom   User     @relation(name: "MessageFromUser", fields: [userFromId], references: [id])
+  userFromId String
+  userTo     User     @relation(name: "MessageToUser", fields: [userToId], references: [id])
+  userToId   String
+}
+
+model User {
+  id           String    @id @unique
+  email        String    @unique
+  username     String    @unique
+  password     String
+  role         Role      @default(USER)
+  status       Status    @default(OFF)
+  messagesFrom Message[] @relation(name: "MessageFromUser")
+  messagesTo   Message[] @relation(name: "MessageToUser")
+  profile      Profile   @relation(fields: [profileId], references: [id])
+  profileId    String
+}
+
+enum Role {
+  USER
+  GUEST
+}
+
+enum Status {
+  ONLINE
+  OFF
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      Json
+  expiresAt DateTime
+}

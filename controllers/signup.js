@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const { v4: uuidv4 } = require("uuid");
 const { body, validationResult } = require("express-validator");
 const passwordValidation = require("./signup_validation_password");
 const db_users = require("../prisma-queries/users");
@@ -61,15 +62,35 @@ const post = [
         errors: errors.array(),
       });
     }
-
-    bcrypt.hash(req.body.user_password, 20, async (err, hashedPassword) => {
+    bcrypt.hash(req.body.user_password, 10, async (err, hashedPassword) => {
       if (err) {
         console.log(err);
       }
       // otherwise, store hashedPassword in DB
       try {
-        await db_users.createUser(req, res, hashedPassword);
-        // res.json() answer inside prisma .then
+        const data = {
+          id: uuidv4(),
+          email: req.body.email,
+          username: req.body.username,
+          role: req.body.role,
+        };
+        const [created] = await db_users.createUser(data, hashedPassword);
+        if(created){
+          if(created.msg){
+            return res.status(400).json({
+              title: "Create | New User",
+              message: 'field value is already taken',
+              passwordRequirements: passwordRequirements,
+              errors: [created],
+            });
+          }else{
+            const userdetails = await db_users.getUserFromId(created.id);
+            return res.status(200).json({
+              text: "user created login in your account",
+              user: userdetails,
+            });
+          }
+        }
       } catch (err) {
         return next(err);
       }

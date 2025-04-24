@@ -3,3 +3,10 @@
 
 # dotenv
 .env
+
+# curl request
+some-request.txt
+
+# queries for practice
+index-prisma.js
+

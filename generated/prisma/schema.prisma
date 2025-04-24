@@ -40,7 +40,8 @@ model Profile {
   textcolor   Color?  @relation(name: "textcolor", fields: [textcolorId], references: [id])
   textcolorId String
   aboutme     String? @db.VarChar(255)
-  User        User[]
+  user        User    @relation(fields: [userId], references: [id])
+  userId      String  @unique
 }
 
 model Message {
@@ -62,8 +63,7 @@ model User {
   status       Status    @default(OFF)
   messagesFrom Message[] @relation(name: "MessageFromUser")
   messagesTo   Message[] @relation(name: "MessageToUser")
-  profile      Profile   @relation(fields: [profileId], references: [id])
-  profileId    String
+  profile      Profile?
 }
 
 enum Role {

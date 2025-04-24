@@ -1420,37 +1420,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ProfileCountOutputType
-   */
-
-  export type ProfileCountOutputType = {
-    User: number
-  }
-
-  export type ProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | ProfileCountOutputTypeCountUserArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ProfileCountOutputType without action
-   */
-  export type ProfileCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProfileCountOutputType
-     */
-    select?: ProfileCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ProfileCountOutputType without action
-   */
-  export type ProfileCountOutputTypeCountUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserWhereInput
-  }
-
-
-  /**
    * Count Type UserCountOutputType
    */
 
@@ -3645,6 +3614,7 @@ export namespace Prisma {
     bgcolorId: string | null
     textcolorId: string | null
     aboutme: string | null
+    userId: string | null
   }
 
   export type ProfileMaxAggregateOutputType = {
@@ -3654,6 +3624,7 @@ export namespace Prisma {
     bgcolorId: string | null
     textcolorId: string | null
     aboutme: string | null
+    userId: string | null
   }
 
   export type ProfileCountAggregateOutputType = {
@@ -3663,6 +3634,7 @@ export namespace Prisma {
     bgcolorId: number
     textcolorId: number
     aboutme: number
+    userId: number
     _all: number
   }
 
@@ -3674,6 +3646,7 @@ export namespace Prisma {
     bgcolorId?: true
     textcolorId?: true
     aboutme?: true
+    userId?: true
   }
 
   export type ProfileMaxAggregateInputType = {
@@ -3683,6 +3656,7 @@ export namespace Prisma {
     bgcolorId?: true
     textcolorId?: true
     aboutme?: true
+    userId?: true
   }
 
   export type ProfileCountAggregateInputType = {
@@ -3692,6 +3666,7 @@ export namespace Prisma {
     bgcolorId?: true
     textcolorId?: true
     aboutme?: true
+    userId?: true
     _all?: true
   }
 
@@ -3774,6 +3749,7 @@ export namespace Prisma {
     bgcolorId: string
     textcolorId: string
     aboutme: string | null
+    userId: string
     _count: ProfileCountAggregateOutputType | null
     _min: ProfileMinAggregateOutputType | null
     _max: ProfileMaxAggregateOutputType | null
@@ -3800,11 +3776,11 @@ export namespace Prisma {
     bgcolorId?: boolean
     textcolorId?: boolean
     aboutme?: boolean
+    userId?: boolean
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
-    User?: boolean | Profile$UserArgs<ExtArgs>
-    _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3814,9 +3790,11 @@ export namespace Prisma {
     bgcolorId?: boolean
     textcolorId?: boolean
     aboutme?: boolean
+    userId?: boolean
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3826,9 +3804,11 @@ export namespace Prisma {
     bgcolorId?: boolean
     textcolorId?: boolean
     aboutme?: boolean
+    userId?: boolean
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
   export type ProfileSelectScalar = {
@@ -3838,25 +3818,27 @@ export namespace Prisma {
     bgcolorId?: boolean
     textcolorId?: boolean
     aboutme?: boolean
+    userId?: boolean
   }
 
-  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nametoshow" | "avatarId" | "bgcolorId" | "textcolorId" | "aboutme", ExtArgs["result"]["profile"]>
+  export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nametoshow" | "avatarId" | "bgcolorId" | "textcolorId" | "aboutme" | "userId", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
-    User?: boolean | Profile$UserArgs<ExtArgs>
-    _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProfileIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type ProfileIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     avatar?: boolean | Profile$avatarArgs<ExtArgs>
     bgcolor?: boolean | Profile$bgcolorArgs<ExtArgs>
     textcolor?: boolean | Profile$textcolorArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3865,7 +3847,7 @@ export namespace Prisma {
       avatar: Prisma.$AvatarPayload<ExtArgs> | null
       bgcolor: Prisma.$ColorPayload<ExtArgs> | null
       textcolor: Prisma.$ColorPayload<ExtArgs> | null
-      User: Prisma.$UserPayload<ExtArgs>[]
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3874,6 +3856,7 @@ export namespace Prisma {
       bgcolorId: string
       textcolorId: string
       aboutme: string | null
+      userId: string
     }, ExtArgs["result"]["profile"]>
     composites: {}
   }
@@ -4271,7 +4254,7 @@ export namespace Prisma {
     avatar<T extends Profile$avatarArgs<ExtArgs> = {}>(args?: Subset<T, Profile$avatarArgs<ExtArgs>>): Prisma__AvatarClient<$Result.GetResult<Prisma.$AvatarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     bgcolor<T extends Profile$bgcolorArgs<ExtArgs> = {}>(args?: Subset<T, Profile$bgcolorArgs<ExtArgs>>): Prisma__ColorClient<$Result.GetResult<Prisma.$ColorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     textcolor<T extends Profile$textcolorArgs<ExtArgs> = {}>(args?: Subset<T, Profile$textcolorArgs<ExtArgs>>): Prisma__ColorClient<$Result.GetResult<Prisma.$ColorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    User<T extends Profile$UserArgs<ExtArgs> = {}>(args?: Subset<T, Profile$UserArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4307,6 +4290,7 @@ export namespace Prisma {
     readonly bgcolorId: FieldRef<"Profile", 'String'>
     readonly textcolorId: FieldRef<"Profile", 'String'>
     readonly aboutme: FieldRef<"Profile", 'String'>
+    readonly userId: FieldRef<"Profile", 'String'>
   }
     
 
@@ -4766,30 +4750,6 @@ export namespace Prisma {
      */
     include?: ColorInclude<ExtArgs> | null
     where?: ColorWhereInput
-  }
-
-  /**
-   * Profile.User
-   */
-  export type Profile$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    cursor?: UserWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
@@ -5903,7 +5863,6 @@ export namespace Prisma {
     password: string | null
     role: $Enums.Role | null
     status: $Enums.Status | null
-    profileId: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -5913,7 +5872,6 @@ export namespace Prisma {
     password: string | null
     role: $Enums.Role | null
     status: $Enums.Status | null
-    profileId: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -5923,7 +5881,6 @@ export namespace Prisma {
     password: number
     role: number
     status: number
-    profileId: number
     _all: number
   }
 
@@ -5935,7 +5892,6 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
-    profileId?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -5945,7 +5901,6 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
-    profileId?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -5955,7 +5910,6 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
-    profileId?: true
     _all?: true
   }
 
@@ -6038,7 +5992,6 @@ export namespace Prisma {
     password: string
     role: $Enums.Role
     status: $Enums.Status
-    profileId: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -6065,10 +6018,9 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
-    profileId?: boolean
     messagesFrom?: boolean | User$messagesFromArgs<ExtArgs>
     messagesTo?: boolean | User$messagesToArgs<ExtArgs>
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -6079,8 +6031,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
-    profileId?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6090,8 +6040,6 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
-    profileId?: boolean
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -6101,29 +6049,24 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
-    profileId?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "role" | "status" | "profileId", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "username" | "password" | "role" | "status", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messagesFrom?: boolean | User$messagesFromArgs<ExtArgs>
     messagesTo?: boolean | User$messagesToArgs<ExtArgs>
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | User$profileArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
-  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    profile?: boolean | ProfileDefaultArgs<ExtArgs>
-  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
       messagesFrom: Prisma.$MessagePayload<ExtArgs>[]
       messagesTo: Prisma.$MessagePayload<ExtArgs>[]
-      profile: Prisma.$ProfilePayload<ExtArgs>
+      profile: Prisma.$ProfilePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6132,7 +6075,6 @@ export namespace Prisma {
       password: string
       role: $Enums.Role
       status: $Enums.Status
-      profileId: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -6529,7 +6471,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     messagesFrom<T extends User$messagesFromArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesFromArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     messagesTo<T extends User$messagesToArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    profile<T extends User$profileArgs<ExtArgs> = {}>(args?: Subset<T, User$profileArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6565,7 +6507,6 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
     readonly status: FieldRef<"User", 'Status'>
-    readonly profileId: FieldRef<"User", 'String'>
   }
     
 
@@ -6821,10 +6762,6 @@ export namespace Prisma {
      */
     data: UserCreateManyInput | UserCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -6896,10 +6833,6 @@ export namespace Prisma {
      * Limit how many Users to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7016,6 +6949,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.profile
+   */
+  export type User$profileArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Profile
+     */
+    select?: ProfileSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Profile
+     */
+    omit?: ProfileOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileInclude<ExtArgs> | null
+    where?: ProfileWhereInput
   }
 
   /**
@@ -8070,7 +8022,8 @@ export namespace Prisma {
     avatarId: 'avatarId',
     bgcolorId: 'bgcolorId',
     textcolorId: 'textcolorId',
-    aboutme: 'aboutme'
+    aboutme: 'aboutme',
+    userId: 'userId'
   };
 
   export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
@@ -8093,8 +8046,7 @@ export namespace Prisma {
     username: 'username',
     password: 'password',
     role: 'role',
-    status: 'status',
-    profileId: 'profileId'
+    status: 'status'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8345,10 +8297,11 @@ export namespace Prisma {
     bgcolorId?: StringFilter<"Profile"> | string
     textcolorId?: StringFilter<"Profile"> | string
     aboutme?: StringNullableFilter<"Profile"> | string | null
+    userId?: StringFilter<"Profile"> | string
     avatar?: XOR<AvatarNullableScalarRelationFilter, AvatarWhereInput> | null
     bgcolor?: XOR<ColorNullableScalarRelationFilter, ColorWhereInput> | null
     textcolor?: XOR<ColorNullableScalarRelationFilter, ColorWhereInput> | null
-    User?: UserListRelationFilter
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type ProfileOrderByWithRelationInput = {
@@ -8358,14 +8311,16 @@ export namespace Prisma {
     bgcolorId?: SortOrder
     textcolorId?: SortOrder
     aboutme?: SortOrderInput | SortOrder
+    userId?: SortOrder
     avatar?: AvatarOrderByWithRelationInput
     bgcolor?: ColorOrderByWithRelationInput
     textcolor?: ColorOrderByWithRelationInput
-    User?: UserOrderByRelationAggregateInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type ProfileWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId?: string
     AND?: ProfileWhereInput | ProfileWhereInput[]
     OR?: ProfileWhereInput[]
     NOT?: ProfileWhereInput | ProfileWhereInput[]
@@ -8377,8 +8332,8 @@ export namespace Prisma {
     avatar?: XOR<AvatarNullableScalarRelationFilter, AvatarWhereInput> | null
     bgcolor?: XOR<ColorNullableScalarRelationFilter, ColorWhereInput> | null
     textcolor?: XOR<ColorNullableScalarRelationFilter, ColorWhereInput> | null
-    User?: UserListRelationFilter
-  }, "id" | "id">
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "id" | "userId">
 
   export type ProfileOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8387,6 +8342,7 @@ export namespace Prisma {
     bgcolorId?: SortOrder
     textcolorId?: SortOrder
     aboutme?: SortOrderInput | SortOrder
+    userId?: SortOrder
     _count?: ProfileCountOrderByAggregateInput
     _max?: ProfileMaxOrderByAggregateInput
     _min?: ProfileMinOrderByAggregateInput
@@ -8402,6 +8358,7 @@ export namespace Prisma {
     bgcolorId?: StringWithAggregatesFilter<"Profile"> | string
     textcolorId?: StringWithAggregatesFilter<"Profile"> | string
     aboutme?: StringNullableWithAggregatesFilter<"Profile"> | string | null
+    userId?: StringWithAggregatesFilter<"Profile"> | string
   }
 
   export type MessageWhereInput = {
@@ -8472,10 +8429,9 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
-    profileId?: StringFilter<"User"> | string
     messagesFrom?: MessageListRelationFilter
     messagesTo?: MessageListRelationFilter
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -8485,7 +8441,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-    profileId?: SortOrder
     messagesFrom?: MessageOrderByRelationAggregateInput
     messagesTo?: MessageOrderByRelationAggregateInput
     profile?: ProfileOrderByWithRelationInput
@@ -8501,10 +8456,9 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
-    profileId?: StringFilter<"User"> | string
     messagesFrom?: MessageListRelationFilter
     messagesTo?: MessageListRelationFilter
-    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileNullableScalarRelationFilter, ProfileWhereInput> | null
   }, "id" | "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -8514,7 +8468,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-    profileId?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -8530,7 +8483,6 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     status?: EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
-    profileId?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type SessionWhereInput = {
@@ -8683,7 +8635,7 @@ export namespace Prisma {
     avatar?: AvatarCreateNestedOneWithoutProfileInput
     bgcolor?: ColorCreateNestedOneWithoutBgcolorInput
     textcolor?: ColorCreateNestedOneWithoutTextcolorInput
-    User?: UserCreateNestedManyWithoutProfileInput
+    user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
@@ -8693,7 +8645,7 @@ export namespace Prisma {
     bgcolorId: string
     textcolorId: string
     aboutme?: string | null
-    User?: UserUncheckedCreateNestedManyWithoutProfileInput
+    userId: string
   }
 
   export type ProfileUpdateInput = {
@@ -8703,7 +8655,7 @@ export namespace Prisma {
     avatar?: AvatarUpdateOneWithoutProfileNestedInput
     bgcolor?: ColorUpdateOneWithoutBgcolorNestedInput
     textcolor?: ColorUpdateOneWithoutTextcolorNestedInput
-    User?: UserUpdateManyWithoutProfileNestedInput
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
@@ -8713,7 +8665,7 @@ export namespace Prisma {
     bgcolorId?: StringFieldUpdateOperationsInput | string
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
-    User?: UserUncheckedUpdateManyWithoutProfileNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileCreateManyInput = {
@@ -8723,6 +8675,7 @@ export namespace Prisma {
     bgcolorId: string
     textcolorId: string
     aboutme?: string | null
+    userId: string
   }
 
   export type ProfileUpdateManyMutationInput = {
@@ -8738,6 +8691,7 @@ export namespace Prisma {
     bgcolorId?: StringFieldUpdateOperationsInput | string
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MessageCreateInput = {
@@ -8803,7 +8757,7 @@ export namespace Prisma {
     status?: $Enums.Status
     messagesFrom?: MessageCreateNestedManyWithoutUserFromInput
     messagesTo?: MessageCreateNestedManyWithoutUserToInput
-    profile: ProfileCreateNestedOneWithoutUserInput
+    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8813,9 +8767,9 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     status?: $Enums.Status
-    profileId: string
     messagesFrom?: MessageUncheckedCreateNestedManyWithoutUserFromInput
     messagesTo?: MessageUncheckedCreateNestedManyWithoutUserToInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8827,7 +8781,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     messagesFrom?: MessageUpdateManyWithoutUserFromNestedInput
     messagesTo?: MessageUpdateManyWithoutUserToNestedInput
-    profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
+    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8837,9 +8791,9 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    profileId?: StringFieldUpdateOperationsInput | string
     messagesFrom?: MessageUncheckedUpdateManyWithoutUserFromNestedInput
     messagesTo?: MessageUncheckedUpdateManyWithoutUserToNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8849,7 +8803,6 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     status?: $Enums.Status
-    profileId: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8868,7 +8821,6 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    profileId?: StringFieldUpdateOperationsInput | string
   }
 
   export type SessionCreateInput = {
@@ -9024,19 +8976,14 @@ export namespace Prisma {
     isNot?: ColorWhereInput | null
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type ProfileCountOrderByAggregateInput = {
@@ -9046,6 +8993,7 @@ export namespace Prisma {
     bgcolorId?: SortOrder
     textcolorId?: SortOrder
     aboutme?: SortOrder
+    userId?: SortOrder
   }
 
   export type ProfileMaxOrderByAggregateInput = {
@@ -9055,6 +9003,7 @@ export namespace Prisma {
     bgcolorId?: SortOrder
     textcolorId?: SortOrder
     aboutme?: SortOrder
+    userId?: SortOrder
   }
 
   export type ProfileMinOrderByAggregateInput = {
@@ -9064,6 +9013,7 @@ export namespace Prisma {
     bgcolorId?: SortOrder
     textcolorId?: SortOrder
     aboutme?: SortOrder
+    userId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9093,11 +9043,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
   }
 
   export type MessageCountOrderByAggregateInput = {
@@ -9158,9 +9103,9 @@ export namespace Prisma {
     none?: MessageWhereInput
   }
 
-  export type ProfileScalarRelationFilter = {
-    is?: ProfileWhereInput
-    isNot?: ProfileWhereInput
+  export type ProfileNullableScalarRelationFilter = {
+    is?: ProfileWhereInput | null
+    isNot?: ProfileWhereInput | null
   }
 
   export type MessageOrderByRelationAggregateInput = {
@@ -9174,7 +9119,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-    profileId?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -9184,7 +9128,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-    profileId?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -9194,7 +9137,6 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
-    profileId?: SortOrder
   }
 
   export type EnumRoleWithAggregatesFilter<$PrismaModel = never> = {
@@ -9433,18 +9375,10 @@ export namespace Prisma {
     connect?: ColorWhereUniqueInput
   }
 
-  export type UserCreateNestedManyWithoutProfileInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput> | UserCreateWithoutProfileInput[] | UserUncheckedCreateWithoutProfileInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput | UserCreateOrConnectWithoutProfileInput[]
-    createMany?: UserCreateManyProfileInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
-  export type UserUncheckedCreateNestedManyWithoutProfileInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput> | UserCreateWithoutProfileInput[] | UserUncheckedCreateWithoutProfileInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput | UserCreateOrConnectWithoutProfileInput[]
-    createMany?: UserCreateManyProfileInputEnvelope
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  export type UserCreateNestedOneWithoutProfileInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    connect?: UserWhereUniqueInput
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -9481,32 +9415,12 @@ export namespace Prisma {
     update?: XOR<XOR<ColorUpdateToOneWithWhereWithoutTextcolorInput, ColorUpdateWithoutTextcolorInput>, ColorUncheckedUpdateWithoutTextcolorInput>
   }
 
-  export type UserUpdateManyWithoutProfileNestedInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput> | UserCreateWithoutProfileInput[] | UserUncheckedCreateWithoutProfileInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput | UserCreateOrConnectWithoutProfileInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutProfileInput | UserUpsertWithWhereUniqueWithoutProfileInput[]
-    createMany?: UserCreateManyProfileInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutProfileInput | UserUpdateWithWhereUniqueWithoutProfileInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutProfileInput | UserUpdateManyWithWhereWithoutProfileInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type UserUncheckedUpdateManyWithoutProfileNestedInput = {
-    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput> | UserCreateWithoutProfileInput[] | UserUncheckedCreateWithoutProfileInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutProfileInput | UserCreateOrConnectWithoutProfileInput[]
-    upsert?: UserUpsertWithWhereUniqueWithoutProfileInput | UserUpsertWithWhereUniqueWithoutProfileInput[]
-    createMany?: UserCreateManyProfileInputEnvelope
-    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-    update?: UserUpdateWithWhereUniqueWithoutProfileInput | UserUpdateWithWhereUniqueWithoutProfileInput[]
-    updateMany?: UserUpdateManyWithWhereWithoutProfileInput | UserUpdateManyWithWhereWithoutProfileInput[]
-    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutProfileNestedInput = {
+    create?: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProfileInput
+    upsert?: UserUpsertWithoutProfileInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProfileInput, UserUpdateWithoutProfileInput>, UserUncheckedUpdateWithoutProfileInput>
   }
 
   export type UserCreateNestedOneWithoutMessagesFromInput = {
@@ -9575,6 +9489,12 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
+  export type ProfileUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
+    connect?: ProfileWhereUniqueInput
+  }
+
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
   }
@@ -9611,10 +9531,12 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
-  export type ProfileUpdateOneRequiredWithoutUserNestedInput = {
+  export type ProfileUpdateOneWithoutUserNestedInput = {
     create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
     connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
     upsert?: ProfileUpsertWithoutUserInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
     connect?: ProfileWhereUniqueInput
     update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
   }
@@ -9645,6 +9567,16 @@ export namespace Prisma {
     update?: MessageUpdateWithWhereUniqueWithoutUserToInput | MessageUpdateWithWhereUniqueWithoutUserToInput[]
     updateMany?: MessageUpdateManyWithWhereWithoutUserToInput | MessageUpdateManyWithWhereWithoutUserToInput[]
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type ProfileUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<ProfileCreateWithoutUserInput, ProfileUncheckedCreateWithoutUserInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutUserInput
+    upsert?: ProfileUpsertWithoutUserInput
+    disconnect?: ProfileWhereInput | boolean
+    delete?: ProfileWhereInput | boolean
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutUserInput, ProfileUpdateWithoutUserInput>, ProfileUncheckedUpdateWithoutUserInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9819,7 +9751,7 @@ export namespace Prisma {
     aboutme?: string | null
     bgcolor?: ColorCreateNestedOneWithoutBgcolorInput
     textcolor?: ColorCreateNestedOneWithoutTextcolorInput
-    User?: UserCreateNestedManyWithoutProfileInput
+    user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutAvatarInput = {
@@ -9828,7 +9760,7 @@ export namespace Prisma {
     bgcolorId: string
     textcolorId: string
     aboutme?: string | null
-    User?: UserUncheckedCreateNestedManyWithoutProfileInput
+    userId: string
   }
 
   export type ProfileCreateOrConnectWithoutAvatarInput = {
@@ -9867,6 +9799,7 @@ export namespace Prisma {
     bgcolorId?: StringFilter<"Profile"> | string
     textcolorId?: StringFilter<"Profile"> | string
     aboutme?: StringNullableFilter<"Profile"> | string | null
+    userId?: StringFilter<"Profile"> | string
   }
 
   export type ProfileCreateWithoutBgcolorInput = {
@@ -9875,7 +9808,7 @@ export namespace Prisma {
     aboutme?: string | null
     avatar?: AvatarCreateNestedOneWithoutProfileInput
     textcolor?: ColorCreateNestedOneWithoutTextcolorInput
-    User?: UserCreateNestedManyWithoutProfileInput
+    user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutBgcolorInput = {
@@ -9884,7 +9817,7 @@ export namespace Prisma {
     avatarId?: string | null
     textcolorId: string
     aboutme?: string | null
-    User?: UserUncheckedCreateNestedManyWithoutProfileInput
+    userId: string
   }
 
   export type ProfileCreateOrConnectWithoutBgcolorInput = {
@@ -9903,7 +9836,7 @@ export namespace Prisma {
     aboutme?: string | null
     avatar?: AvatarCreateNestedOneWithoutProfileInput
     bgcolor?: ColorCreateNestedOneWithoutBgcolorInput
-    User?: UserCreateNestedManyWithoutProfileInput
+    user: UserCreateNestedOneWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutTextcolorInput = {
@@ -9912,7 +9845,7 @@ export namespace Prisma {
     avatarId?: string | null
     bgcolorId: string
     aboutme?: string | null
-    User?: UserUncheckedCreateNestedManyWithoutProfileInput
+    userId: string
   }
 
   export type ProfileCreateOrConnectWithoutTextcolorInput = {
@@ -10039,11 +9972,6 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
   }
 
-  export type UserCreateManyProfileInputEnvelope = {
-    data: UserCreateManyProfileInput | UserCreateManyProfileInput[]
-    skipDuplicates?: boolean
-  }
-
   export type AvatarUpsertWithoutProfileInput = {
     update: XOR<AvatarUpdateWithoutProfileInput, AvatarUncheckedUpdateWithoutProfileInput>
     create: XOR<AvatarCreateWithoutProfileInput, AvatarUncheckedCreateWithoutProfileInput>
@@ -10117,33 +10045,37 @@ export namespace Prisma {
     bgcolor?: ProfileUncheckedUpdateManyWithoutBgcolorNestedInput
   }
 
-  export type UserUpsertWithWhereUniqueWithoutProfileInput = {
-    where: UserWhereUniqueInput
+  export type UserUpsertWithoutProfileInput = {
     update: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
     create: XOR<UserCreateWithoutProfileInput, UserUncheckedCreateWithoutProfileInput>
+    where?: UserWhereInput
   }
 
-  export type UserUpdateWithWhereUniqueWithoutProfileInput = {
-    where: UserWhereUniqueInput
+  export type UserUpdateToOneWithWhereWithoutProfileInput = {
+    where?: UserWhereInput
     data: XOR<UserUpdateWithoutProfileInput, UserUncheckedUpdateWithoutProfileInput>
   }
 
-  export type UserUpdateManyWithWhereWithoutProfileInput = {
-    where: UserScalarWhereInput
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutProfileInput>
+  export type UserUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    messagesFrom?: MessageUpdateManyWithoutUserFromNestedInput
+    messagesTo?: MessageUpdateManyWithoutUserToNestedInput
   }
 
-  export type UserScalarWhereInput = {
-    AND?: UserScalarWhereInput | UserScalarWhereInput[]
-    OR?: UserScalarWhereInput[]
-    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
-    role?: EnumRoleFilter<"User"> | $Enums.Role
-    status?: EnumStatusFilter<"User"> | $Enums.Status
-    profileId?: StringFilter<"User"> | string
+  export type UserUncheckedUpdateWithoutProfileInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    messagesFrom?: MessageUncheckedUpdateManyWithoutUserFromNestedInput
+    messagesTo?: MessageUncheckedUpdateManyWithoutUserToNestedInput
   }
 
   export type UserCreateWithoutMessagesFromInput = {
@@ -10154,7 +10086,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.Status
     messagesTo?: MessageCreateNestedManyWithoutUserToInput
-    profile: ProfileCreateNestedOneWithoutUserInput
+    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesFromInput = {
@@ -10164,8 +10096,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     status?: $Enums.Status
-    profileId: string
     messagesTo?: MessageUncheckedCreateNestedManyWithoutUserToInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesFromInput = {
@@ -10181,7 +10113,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.Status
     messagesFrom?: MessageCreateNestedManyWithoutUserFromInput
-    profile: ProfileCreateNestedOneWithoutUserInput
+    profile?: ProfileCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesToInput = {
@@ -10191,8 +10123,8 @@ export namespace Prisma {
     password: string
     role?: $Enums.Role
     status?: $Enums.Status
-    profileId: string
     messagesFrom?: MessageUncheckedCreateNestedManyWithoutUserFromInput
+    profile?: ProfileUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesToInput = {
@@ -10219,7 +10151,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     messagesTo?: MessageUpdateManyWithoutUserToNestedInput
-    profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
+    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesFromInput = {
@@ -10229,8 +10161,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    profileId?: StringFieldUpdateOperationsInput | string
     messagesTo?: MessageUncheckedUpdateManyWithoutUserToNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutMessagesToInput = {
@@ -10252,7 +10184,7 @@ export namespace Prisma {
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     messagesFrom?: MessageUpdateManyWithoutUserFromNestedInput
-    profile?: ProfileUpdateOneRequiredWithoutUserNestedInput
+    profile?: ProfileUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesToInput = {
@@ -10262,8 +10194,8 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    profileId?: StringFieldUpdateOperationsInput | string
     messagesFrom?: MessageUncheckedUpdateManyWithoutUserFromNestedInput
+    profile?: ProfileUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type MessageCreateWithoutUserFromInput = {
@@ -10415,6 +10347,7 @@ export namespace Prisma {
     bgcolorId: string
     textcolorId: string
     aboutme?: string | null
+    userId: string
   }
 
   export type ProfileUpdateWithoutAvatarInput = {
@@ -10423,7 +10356,7 @@ export namespace Prisma {
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
     bgcolor?: ColorUpdateOneWithoutBgcolorNestedInput
     textcolor?: ColorUpdateOneWithoutTextcolorNestedInput
-    User?: UserUpdateManyWithoutProfileNestedInput
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutAvatarInput = {
@@ -10432,7 +10365,7 @@ export namespace Prisma {
     bgcolorId?: StringFieldUpdateOperationsInput | string
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
-    User?: UserUncheckedUpdateManyWithoutProfileNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileUncheckedUpdateManyWithoutAvatarInput = {
@@ -10441,6 +10374,7 @@ export namespace Prisma {
     bgcolorId?: StringFieldUpdateOperationsInput | string
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileCreateManyBgcolorInput = {
@@ -10449,6 +10383,7 @@ export namespace Prisma {
     avatarId?: string | null
     textcolorId: string
     aboutme?: string | null
+    userId: string
   }
 
   export type ProfileCreateManyTextcolorInput = {
@@ -10457,6 +10392,7 @@ export namespace Prisma {
     avatarId?: string | null
     bgcolorId: string
     aboutme?: string | null
+    userId: string
   }
 
   export type ProfileUpdateWithoutBgcolorInput = {
@@ -10465,7 +10401,7 @@ export namespace Prisma {
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: AvatarUpdateOneWithoutProfileNestedInput
     textcolor?: ColorUpdateOneWithoutTextcolorNestedInput
-    User?: UserUpdateManyWithoutProfileNestedInput
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutBgcolorInput = {
@@ -10474,7 +10410,7 @@ export namespace Prisma {
     avatarId?: NullableStringFieldUpdateOperationsInput | string | null
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
-    User?: UserUncheckedUpdateManyWithoutProfileNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileUncheckedUpdateManyWithoutBgcolorInput = {
@@ -10483,6 +10419,7 @@ export namespace Prisma {
     avatarId?: NullableStringFieldUpdateOperationsInput | string | null
     textcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileUpdateWithoutTextcolorInput = {
@@ -10491,7 +10428,7 @@ export namespace Prisma {
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: AvatarUpdateOneWithoutProfileNestedInput
     bgcolor?: ColorUpdateOneWithoutBgcolorNestedInput
-    User?: UserUpdateManyWithoutProfileNestedInput
+    user?: UserUpdateOneRequiredWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutTextcolorInput = {
@@ -10500,7 +10437,7 @@ export namespace Prisma {
     avatarId?: NullableStringFieldUpdateOperationsInput | string | null
     bgcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
-    User?: UserUncheckedUpdateManyWithoutProfileNestedInput
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProfileUncheckedUpdateManyWithoutTextcolorInput = {
@@ -10509,46 +10446,7 @@ export namespace Prisma {
     avatarId?: NullableStringFieldUpdateOperationsInput | string | null
     bgcolorId?: StringFieldUpdateOperationsInput | string
     aboutme?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type UserCreateManyProfileInput = {
-    id: string
-    email: string
-    username: string
-    password: string
-    role?: $Enums.Role
-    status?: $Enums.Status
-  }
-
-  export type UserUpdateWithoutProfileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    messagesFrom?: MessageUpdateManyWithoutUserFromNestedInput
-    messagesTo?: MessageUpdateManyWithoutUserToNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutProfileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
-    messagesFrom?: MessageUncheckedUpdateManyWithoutUserFromNestedInput
-    messagesTo?: MessageUncheckedUpdateManyWithoutUserToNestedInput
-  }
-
-  export type UserUncheckedUpdateManyWithoutProfileInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type MessageCreateManyUserFromInput = {

@@ -140,7 +140,8 @@ exports.Prisma.ProfileScalarFieldEnum = {
   avatarId: 'avatarId',
   bgcolorId: 'bgcolorId',
   textcolorId: 'textcolorId',
-  aboutme: 'aboutme'
+  aboutme: 'aboutme',
+  userId: 'userId'
 };
 
 exports.Prisma.MessageScalarFieldEnum = {
@@ -157,8 +158,7 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   password: 'password',
   role: 'role',
-  status: 'status',
-  profileId: 'profileId'
+  status: 'status'
 };
 
 exports.Prisma.SessionScalarFieldEnum = {

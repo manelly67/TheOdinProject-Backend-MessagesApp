@@ -43,9 +43,17 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//you will have access to the currentUser variable in all of your views
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // routes
 app.use("/", routes.homepage);
 app.use("/sign_up", routes.signup);
+app.use("/login", routes.login);
+app.use("/logout", routes.logout);
 
 // error page
 app.use((req, res) => res.status(404).json({

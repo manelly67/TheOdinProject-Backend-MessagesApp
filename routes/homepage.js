@@ -3,8 +3,9 @@ const controller  = require("../controllers/homepage");
 const router = Router();
 
 
-
 router.get("/", controller.get);
+
+router.get("/isauthenticated", controller.isAuth);
 
 
 

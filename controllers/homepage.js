@@ -5,4 +5,19 @@ async function get(req, res) {
   });
 }
 
-module.exports = { get };
+async function isAuth(req, res) {
+  switch (req.isAuthenticated()) {
+    case false:
+      res.json({
+        isAuthenticated: false,
+      });
+      break;
+    case true:
+      res.json({
+        isAuthenticated: true,
+      });
+      break;
+  }
+}
+
+module.exports = { get, isAuth };

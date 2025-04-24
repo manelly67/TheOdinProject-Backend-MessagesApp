@@ -1,9 +1,6 @@
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
-const passwordRequirements =
-  "Password must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters";
-
 
 async function createUser(data, hashedPassword) {
   return  await prisma.user
@@ -33,13 +30,15 @@ async function createUser(data, hashedPassword) {
       });
   }
   
+  // this function is used by login passport to validate password
   const getUserFromUsername = async (username) => {
     return await prisma.user.findUnique({
       where: { username: username },
       select:{
         id : true,          
         email : true,      
-        username : true,     
+        username : true,
+        password : true,    
         role : true,       
         status : true,     
         messagesFrom : true,

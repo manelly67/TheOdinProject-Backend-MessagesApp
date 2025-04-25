@@ -76,10 +76,10 @@ const post = [
         };
         const [created] = await db_users.createUser(data, hashedPassword);
         if(created){
-          if(created.msg){
+          if(created.err){
             return res.status(400).json({
               title: "Create | New User",
-              message: 'field value is already taken',
+              message: created.msg,
               passwordRequirements: passwordRequirements,
               errors: [created],
             });

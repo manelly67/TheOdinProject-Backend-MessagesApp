@@ -36,8 +36,9 @@ const post = [
       const token = jwt.sign({ userId: user.id }, secret_key, {
         expiresIn: "1h",
       });
-      const userON = await db_users.setStatusOn(user.id);
-      return res.status(200).json({ user: userON, token: token });
+      await db_users.setStatusOn(user.id);
+      const userdetails = await db_users.getUserFromId(user.id);
+      return res.status(200).json({ user: userdetails, token: token });
     },
   ];
 

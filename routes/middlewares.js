@@ -1,3 +1,5 @@
+const db_users = require('../prisma-queries/users');
+
 module.exports.clearMessages = (req, res, next) => {
   req.session.messages = null;
   next();
@@ -31,4 +33,12 @@ module.exports.isUser = (req,res,next) => {
   }else{
       // no permitir algunas acciones
   }
+};
+
+module.exports.setOff = async(req,res,next) => {
+  const user = req.user;
+  if (user) {
+      await db_users.setStatusOff(user.id);  
+  }
+  next();
 };

@@ -104,8 +104,32 @@ async function createUser(data, hashedPassword) {
     });
   };
 
+  const setStatusOff = async (id) => {
+    return await prisma.user.update({
+      where:{
+        id: id,
+      },
+      data: {
+        status: "OFF",
+      },
+    });
+  };
+
+  const setStatusOn = async (id) => {
+    return await prisma.user.update({
+      where:{
+        id: id,
+      },
+      data: {
+        status: "ONLINE",
+      },
+    });
+  };
+
   module.exports = {
     createUser,
     getUserFromUsername,
     getUserFromId,
+    setStatusOff,
+    setStatusOn,
   };

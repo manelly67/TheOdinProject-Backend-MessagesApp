@@ -6,6 +6,8 @@ const { verifyToken } = require("./middlewares");
 
 router.get("/all", verifyToken , controller.getAllUserChats);
 
+router.get("/new", verifyToken , controller.newGet);
+
 
 
 

@@ -28,6 +28,22 @@ async function getAllUserChats(req, res) {
   }
 }
 
+async function newGet(req, res) {
+  jwt.verify(req.token, secret_key, (err, authData) => {
+    if (err) {
+      res.status(403).json({
+        err: err,
+      });
+    } else {
+      return res.status(200).json({
+        title: "CREATE NEW CHAT",
+        authData,
+      });
+    }
+  });
+}
+
 module.exports = {
   getAllUserChats,
+  newGet,
 };

@@ -52,6 +52,15 @@ model Message {
   userFromId String
   userTo     User     @relation(name: "MessageToUser", fields: [userToId], references: [id])
   userToId   String
+  chat       Chat     @relation(fields: [chatId], references: [id])
+  chatId     String
+}
+
+model Chat {
+  id        String    @id @unique
+  createdAt DateTime  @default(now())
+  users     User[]
+  messages  Message[]
 }
 
 model User {
@@ -61,9 +70,10 @@ model User {
   password     String
   role         Role      @default(USER)
   status       Status    @default(OFF)
+  chats        Chat[]
+  profile      Profile?
   messagesFrom Message[] @relation(name: "MessageFromUser")
   messagesTo   Message[] @relation(name: "MessageToUser")
-  profile      Profile?
 }
 
 enum Role {

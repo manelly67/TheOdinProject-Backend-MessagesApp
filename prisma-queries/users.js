@@ -41,8 +41,6 @@ async function createUser(data, hashedPassword) {
         password : true,    
         role : true,       
         status : true,     
-        messagesFrom : true,
-        messagesTo : true,
         profile : {
             select:{
                 nametoshow : true,
@@ -76,9 +74,8 @@ async function createUser(data, hashedPassword) {
         email : true,      
         username : true,     
         role : true,       
-        status : true,     
-        messagesFrom : true,
-        messagesTo : true,
+        status : true,
+        chats : true,     
         profile : {
             select:{
                 nametoshow : true,

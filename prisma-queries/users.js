@@ -1,5 +1,6 @@
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
+const { errWrapper } = require("./handle_prisma_errors");
 
 
 async function createUser(data, hashedPassword) {
@@ -18,11 +19,8 @@ async function createUser(data, hashedPassword) {
         return [res];
       })
       .catch(async (err) => {
-        if (err.code === "P2002") {
-          const errFields = [
-            { msg: `fields [ ${err.meta.target}] is already taken.` },
-          ];
-          return errFields;
+        if(err){
+          return errWrapper(err);
         }else{
           await prisma.$disconnect();
           process.exit(1);

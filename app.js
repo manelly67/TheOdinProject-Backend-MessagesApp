@@ -54,6 +54,7 @@ app.use("/", routes.homepage);
 app.use("/sign_up", routes.signup);
 app.use("/login", routes.login);
 app.use("/logout", routes.logout);
+app.use("/chats", routes.chat);
 
 // error page
 app.use((req, res) => res.status(404).json({

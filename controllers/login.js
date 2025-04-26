@@ -34,7 +34,7 @@ const post = [
     async function (req, res) {
       const user = req.user;
       const token = jwt.sign({ userId: user.id }, secret_key, {
-        expiresIn: "1h",
+        expiresIn: "1d",
       });
       await db_users.setStatusOn(user.id);
       const userdetails = await db_users.getUserFromId(user.id);

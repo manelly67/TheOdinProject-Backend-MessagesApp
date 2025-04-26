@@ -26,8 +26,8 @@ app.use(
   session({
     cookie: {
       SameSite: "None",
-      maxAge: 1000 * 60 * 60, // Equals 1 hour - 60min/1hrs - 60seg/1min - 1000ms/1seg
-    },
+      maxAge: 1000 * 60 * 60 * 24, // Equals 1 day - 24hrs/1day - 60min/1hrs - 60seg/1min - 1000ms/1seg
+      },
     secret: secret_key,
     resave: true,
     saveUninitialized: true,

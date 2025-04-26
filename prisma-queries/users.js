@@ -121,10 +121,43 @@ async function createUser(data, hashedPassword) {
     });
   };
 
+  const userExists = async (id) => {
+    const user = await prisma.user.findUnique({
+      where: { id: id },
+    });
+    return !user ? false : true;
+  };
+
+const assignChatToUser = async (chatId, userId) => {
+  let user = await prisma.user.findUnique({where:{id:userId}});
+  switch(!user.chats){
+    case true:{
+      let chatArray = [];
+      chatArray.push(chatId);
+      await prisma.user.update({
+        where:{id:userId},
+        data:{chats: chatArray},
+      });
+    }
+      break;
+    case false:{
+      let chatArray = user.chats;
+      chatArray.push(chatId);
+      await prisma.user.update({
+        where:{id:userId},
+        data:{chats: chatArray},
+      });
+    }
+    break;
+  }
+}
+
   module.exports = {
     createUser,
     getUserFromUsername,
     getUserFromId,
     setStatusOff,
     setStatusOn,
+    userExists,
+    assignChatToUser,
   };

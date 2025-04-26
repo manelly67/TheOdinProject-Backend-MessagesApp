@@ -8,7 +8,7 @@ router.get("/all", verifyToken , controller.getAllUserChats);
 
 router.get("/new", verifyToken , controller.newGet);
 
-
+router.post("/new", verifyToken , controller.post);
 
 
 module.exports = router;

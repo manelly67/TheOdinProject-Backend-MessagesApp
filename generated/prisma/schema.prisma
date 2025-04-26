@@ -57,10 +57,10 @@ model Message {
 }
 
 model Chat {
-  id        String    @id @unique
-  createdAt DateTime  @default(now())
-  users     User[]
-  messages  Message[]
+  id          String    @id @unique
+  createdAt   DateTime  @default(now())
+  usersInChat String[]
+  messages    Message[]
 }
 
 model User {
@@ -70,7 +70,7 @@ model User {
   password     String
   role         Role      @default(USER)
   status       Status    @default(OFF)
-  chats        Chat[]
+  chats        String[]
   profile      Profile?
   messagesFrom Message[] @relation(name: "MessageFromUser")
   messagesTo   Message[] @relation(name: "MessageToUser")

@@ -1,17 +1,14 @@
 async function get(req, res, next) {
+  console.log(req.session.user);
   req.user = req.session.user;
   req.logout();
-  req.session.destroy(function (err) {
-    if (err) {
-      return next(err);
-    }
-   /*  res.clearCookie('connect.sid', { path: '/' }); */
-    return res.status(200).clearCookie('connect.sid', { path: '/' }).json({
+  
+    return res.status(200).json({
       text: "successful logout",
       user: null,
       token: null,
     });
-  });
+  
 
 };
 

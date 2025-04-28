@@ -34,12 +34,13 @@ const post = [
     // successful login will grant the user a JWT
     async function (req, res) {
       const user = req.user;
+      const session = req.session;
       const token = jwt.sign({ userId: user.id }, secret_key, {
         expiresIn: "1d",
       });
       await db_users.setStatusOn(user.id);
       const userdetails = await db_users.getUserFromId(user.id);
-      return res.status(200).json({ user: userdetails, token: token });
+      return res.status(200).json({ user: userdetails, token: token, session:session });
     },
   ];
 

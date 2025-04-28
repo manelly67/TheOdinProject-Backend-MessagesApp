@@ -15,9 +15,12 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
+   "generate": "npx prisma generate",
+    "build": "npm run generate",
     "test": "node tests/tests.js",
     "lint": "eslint .",
-    "start": "node --watch app.js"
+    "start": "npm run build && node app.js",
+    "watch": "node --watch app.js"
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",

@@ -6,6 +6,8 @@ async function get(req, res) {
 }
 
 async function isAuth(req, res) {
+  const { user_id } = req.params;
+  req.user = user_id;
   switch (req.isAuthenticated()) {
     case false:
       res.json({

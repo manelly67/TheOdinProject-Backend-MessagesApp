@@ -31,7 +31,9 @@ module.exports.isUser = (req,res,next) => {
   if (role === "USER") {
       next();
   }else{
-      // no permitir algunas acciones
+    res.status(400).json({
+      message: "you are in GUEST mode - this action is forbidden",
+    });
   }
 };
 

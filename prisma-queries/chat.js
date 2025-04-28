@@ -93,9 +93,22 @@ async function getChatObjById(id) {
   });
 }
 
+async function getChatMembers(id) {
+  return await prisma.chat.findUnique({
+    where:{
+      id : id,
+    },
+    select:{
+      id : true,
+      usersInChat : true,
+    },
+  });
+}
+
 module.exports = {
     getAllChats,
     createNew,
     chatExists,
     getChatObjById,
+    getChatMembers,
   };

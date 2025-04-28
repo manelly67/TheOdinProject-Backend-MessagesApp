@@ -69,7 +69,7 @@ async function post(req, res) {
           message: "at least one user does not exist",
         });
       case false:
-        console.log('todos los usuarios existen');
+       {
         const chatExists = await db_chats.chatExists(array);
         switch(chatExists){
           case true:
@@ -80,7 +80,7 @@ async function post(req, res) {
             const data = {
               id: uuidv4(),
               usersInChat: array,
-            }
+            };
             const [created] = await db_chats.createNew(data);
             if(created){
               if(created.err){
@@ -101,7 +101,7 @@ async function post(req, res) {
             }            
           }           
         }
-
+      }
         break;
     }
   }

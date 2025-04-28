@@ -150,7 +150,7 @@ const assignChatToUser = async (chatId, userId) => {
     }
     break;
   }
-}
+};
 
   module.exports = {
     createUser,

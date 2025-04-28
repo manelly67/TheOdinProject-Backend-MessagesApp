@@ -27,6 +27,7 @@ async function get(req, res) {
   // the following routes require password.js
 const post = [
     passport.authenticate("local", {
+      // AGREGAR LUEGO EL SUCCES REDIRECT
       failureRedirect: "/login",
       failureMessage: true,
     }),

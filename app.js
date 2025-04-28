@@ -12,7 +12,13 @@ const routes = require("./routes");
 
 const app = express();
 // Enable CORS
-app.use(cors());
+/* app.use(cors()); */
+
+app.use(cors({
+    origin: "http://localhost:5173/",
+    allowedHeaders: ["Content-Type", "Connection"],
+    credentials:true,
+  } ));
 
 const myObject = {};
 require("dotenv").config({ processEnv: myObject });
@@ -55,6 +61,7 @@ app.use("/sign_up", routes.signup);
 app.use("/login", routes.login);
 app.use("/logout", routes.logout);
 app.use("/chats", routes.chat);
+/* app.use("./messages", routes.message); */
 
 // error page
 app.use((req, res) => res.status(404).json({

@@ -38,9 +38,10 @@ module.exports.isUser = (req, res, next) => {
 };
 
 module.exports.setOff = async (req, res, next) => {
-  const { user_id } = req.body;
-  if (user_id) {
-    await db_users.setStatusOff(user_id);
+  const user = req.session.user;
+  console.log(user);
+  if (user) {
+    await db_users.setStatusOff(user.id);
   }
   next();
 };

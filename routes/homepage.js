@@ -4,6 +4,6 @@ const router = Router();
 
 router.get("/", controller.get);
 
-router.get("/isauthenticated/:user_id", controller.isAuth);
+router.get("/isauthenticated", controller.isAuth);
 
 module.exports = router;

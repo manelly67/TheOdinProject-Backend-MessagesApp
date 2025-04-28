@@ -1,4 +1,4 @@
-const db_users = require('../prisma-queries/users');
+const db_users = require("../prisma-queries/users");
 
 module.exports.clearMessages = (req, res, next) => {
   req.session.messages = null;
@@ -26,21 +26,21 @@ module.exports.verifyToken = (req, res, next) => {
   }
 };
 
-module.exports.isUser = (req,res,next) => {
+module.exports.isUser = (req, res, next) => {
   const role = req.user.role;
   if (role === "USER") {
-      next();
-  }else{
+    next();
+  } else {
     res.status(400).json({
       message: "you are in GUEST mode - this action is forbidden",
     });
   }
 };
 
-module.exports.setOff = async(req,res,next) => {
-  const user = req.user;
-  if (user) {
-      await db_users.setStatusOff(user.id);  
+module.exports.setOff = async (req, res, next) => {
+  const { user_id } = req.body;
+  if (user_id) {
+    await db_users.setStatusOff(user_id);
   }
   next();
 };

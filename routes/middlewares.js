@@ -38,7 +38,7 @@ module.exports.isUser = (req, res, next) => {
 };
 
 module.exports.setOff = async (req, res, next) => {
-  const user = req.session.user;
+  const user = req.session.passport.user;
   console.log(user);
   if (user) {
     await db_users.setStatusOff(user.id);

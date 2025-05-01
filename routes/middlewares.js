@@ -1,4 +1,11 @@
+const jwt = require("jsonwebtoken");
+const { PrismaClient } = require("../generated/prisma");
+const prisma = new PrismaClient();
 const db_users = require("../prisma-queries/users");
+
+const myObject = {};
+require("dotenv").config({ processEnv: myObject });
+const secret_key = process.env.SECRET_KEY || myObject.SECRET_KEY;
 
 module.exports.clearMessages = (req, res, next) => {
   req.session.messages = null;
@@ -26,23 +33,84 @@ module.exports.verifyToken = (req, res, next) => {
   }
 };
 
-module.exports.isUser = (req, res, next) => {
-  const role = req.user.role;
-  if (role === "USER") {
-    next();
-  } else {
-    res.status(400).json({
-      message: "you are in GUEST mode - this action is forbidden",
+module.exports.isAuth = async (req, res, next) => {
+   const authData = jwt.verify(req.token, secret_key, (err, authData) => {
+    if (err) {
+      return res.status(403).json({
+        err: err,
+      });
+    } else {
+      return authData;
+    }
+  });
+  if (authData.statusCode !== 403) {
+    const { userId, exp }  = authData;
+    const up = new Date((exp + 60) * 1000);
+    const low = new Date((exp - 60) * 1000);
+    const sessions = await prisma.session.findMany({
+      where: {
+        AND: {
+          data: {
+            path: ["passport"]["user"],
+            string_contains: `${userId}`,
+          },
+          expiresAt: {
+            gte: low,
+            lt: up,
+          },
+        },
+      },
     });
+    switch (sessions.length > 0) {
+      case true:
+        req.user = authData;
+        next();
+        break;
+      case false:
+        res.status(400).json({
+          message: "the user's session was closed",
+        });
+        break;
+    }
+  }
+};
+
+module.exports.isUser = async (req, res, next) => {
+  const authData = jwt.verify(req.token, secret_key, (err, authData) => {
+    if (err) {
+      return res.status(403).json({
+        err: err,
+      });
+    } else {
+      return authData;
+    }
+  });
+  if (authData.statusCode !== 403) {
+    const { role } = await db_users.getRole(authData.userId);
+    if (role === "USER") {
+      req.user = authData;
+      next();
+    } else {
+      res.status(400).json({
+        message: "you are in GUEST mode - this action is forbidden",
+      });
+    }
   }
 };
 
 module.exports.setOff = async (req, res, next) => {
-  const user = req.session.passport.user;
-  
-  if (user) {
-    console.log(user);
-    await db_users.setStatusOff(user);
+  const authData = jwt.verify(req.token, secret_key, (err, authData) => {
+    if (err) {
+      return res.status(403).json({
+        err: err,
+      });
+    } else {
+      return authData;
+    }
+  });
+  if (authData.statusCode !== 403) {
+    req.user = authData;
+    await db_users.setStatusOff(authData.userId);
+    next();
   }
-  next();
 };

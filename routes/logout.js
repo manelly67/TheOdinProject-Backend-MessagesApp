@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const controller = require("../controllers/logout");
 const router = Router();
-const { setOff } = require("./middlewares");
+const { setOff, verifyToken } = require("./middlewares");
 
-router.get("/", controller.get);
+router.get("/", verifyToken, setOff, controller.get);
 
 module.exports = router;

@@ -152,6 +152,17 @@ const assignChatToUser = async (chatId, userId) => {
   }
 };
 
+const getRole = async (id) => {
+  return await prisma.user.findUnique({
+    where:{
+      id: id,
+    },
+    select:{
+      role: true,
+    },
+  });
+};
+
   module.exports = {
     createUser,
     getUserFromUsername,
@@ -160,4 +171,5 @@ const assignChatToUser = async (chatId, userId) => {
     setStatusOn,
     userExists,
     assignChatToUser,
+    getRole,
   };

@@ -21,31 +21,13 @@ async function isAuth(req, res) {
 }
 
 async function isGuest(req, res) {
-  const authData = jwt.verify(req.token, secret_key, (err, authData) => {
-    if (err) {
-      return res.status(403).json({
-        err: err,
-      });
-    } else {
-      return authData;
-    }
+  // luego agregar aqui la data que podra ver el guest
+  console.log(req.user);
+  return res.status(200).json({
+    isGuest: true,
+    message: "welcome to the guest routes",
+    user: req.user,
   });
-  if (authData.statusCode !== 403) {
-    const { role } = db_users.getRole(authData.userId);
-    switch (role === "GUEST") {
-      case true:
-        // luego agregar aqui la data que podra ver el guest
-        return res.status(200).json({
-          isGuest: true,
-          message: "Welcome to Message Guest visiting routes",
-        });
-      default:
-        return res.status(200).json({
-          isGuest: false,
-          message: "You are not a Guest",
-        });
-    }
-  }
 }
 
 module.exports = { get, isAuth, isGuest };

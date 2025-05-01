@@ -76,27 +76,32 @@ module.exports.isAuth = async (req, res, next) => {
 };
 
 module.exports.isUser = async (req, res, next) => {
-  const authData = jwt.verify(req.token, secret_key, (err, authData) => {
-    if (err) {
-      return res.status(403).json({
-        err: err,
-      });
-    } else {
-      return authData;
-    }
-  });
-  if (authData.statusCode !== 403) {
+    const authData = req.user;
     const { role } = await db_users.getRole(authData.userId);
     if (role === "USER") {
-      req.user = authData;
+  /*     req.user = authData; */
       next();
     } else {
-      res.status(400).json({
+      return res.status(400).json({
         message: "you are in GUEST mode - this action is forbidden",
       });
     }
+};
+
+module.exports.isGuest = async (req, res, next) => {
+  const authData = req.user;
+  const { role } = await db_users.getRole(authData.userId);
+  if (role === "GUEST") {
+/*     req.user = authData; */
+    next();
+  } else {
+    return res.status(400).json({
+      isGuest: false,
+      message: "You are not a Guest",
+    });
   }
 };
+
 
 module.exports.setOff = async (req, res, next) => {
   const authData = jwt.verify(req.token, secret_key, (err, authData) => {

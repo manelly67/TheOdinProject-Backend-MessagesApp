@@ -1,47 +1,107 @@
-const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const { v4: uuidv4 } = require("uuid");
 const db_chats = require("../prisma-queries/chat");
-const db_users = require("../prisma-queries/users");
-
-const myObject = {};
-require("dotenv").config({ processEnv: myObject });
-const secret_key = process.env.SECRET_KEY || myObject.SECRET_KEY;
+const db_messages = require("../prisma-queries/message");
 
 // Following routes require authentication
 
 async function newGet(req, res) {
-/*   const { chat_id } = req.params;
-  const authData = jwt.verify(req.token, secret_key, (err, authData) => {
-    if (err) {
-      return res.status(403).json({
-        err: err,
-      });
-    } else {
-      return authData;
+  const { chat_id, user_to } = req.params;
+  const authData = req.user;
+  const { userId } = authData;
+  const chatDetails = await db_chats.getChatObjById(chat_id);
+  if (chatDetails) {
+    const { usersInChat } = chatDetails;
+    const check = userIsChatMember(userId, usersInChat);
+    switch (check) {
+      case true:
+        return res.status(200).json({
+          message: "user can write messages in this chat",
+          user_from: userId,
+          user_to: user_to,
+        });
+      case false:
+        return res.status(400).json({
+          message: "user is not a member of this chat",
+        });
     }
-  });
-  if (authData.statusCode !== 403) {
+  } else {
+    return res.status(400).json({
+      message: "chat does not exist",
+    });
+  }
+}
+
+// validate text message
+
+const textmessageErr = "text exceeds the number of characters allowed:";
+const validateUser = [
+  body("text")
+    .trim()
+    .escape()
+    .isLength({ max: 250 })
+    .withMessage(`${textmessageErr} 250`),
+];
+
+const post = [
+  validateUser,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        message: "input data errors",
+        errors: errors.array(),
+      });
+    }
+
+    const { chat_id, user_to } = req.params;
+    const { text } = req.body;
+    const authData = req.user;
     const { userId } = authData;
     const chatDetails = await db_chats.getChatObjById(chat_id);
     if (chatDetails) {
       const { usersInChat } = chatDetails;
       const check = userIsChatMember(userId, usersInChat);
       switch (check) {
-        case true:
-          // mensaje usuario autorizado para escribir mensaje
-          break;
+        case true:{
+          // create message
+          const data = {
+            id: uuidv4(),
+            text: text,
+            userFromId: userId,
+            userToId: user_to,
+            chatId: chat_id,
+          };
+          const [created] = await db_messages.createNew(data);
+          if (created) {
+            if (created.err) {
+              return res.status(400).json({
+                message: "an error occurred",
+                errors: [created],
+              });
+            } else {
+              const chat_updated = await db_chats.getChatObjById(chat_id);
+              return res.status(200).json({
+                message: "new message created",
+                message_details: created,
+                chat_updated: chat_updated,
+              });
+            }
+          }
+        }
+        break;
         case false:
-          // usuario no puede escribir mensajes en este chat
-          break;
+          return res.status(400).json({
+            message: "user is not a member of this chat",
+          });
       }
     } else {
-      // mensaje chat no existe
+      return res.status(400).json({
+        message: "chat does not exist",
+      });
     }
-  } */
-}
-
-const post = [];
+  },
+];
 
 function userIsChatMember(id, array) {
   return array.includes(id);

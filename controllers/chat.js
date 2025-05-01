@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { body, validationResult } = require("express-validator");
 const { v4: uuidv4 } = require("uuid");
 const db_chats = require("../prisma-queries/chat");
 const db_users = require("../prisma-queries/users");

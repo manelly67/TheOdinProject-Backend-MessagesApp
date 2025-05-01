@@ -163,6 +163,21 @@ const getRole = async (id) => {
   });
 };
 
+const getList = async () => {
+  return await prisma.user.findMany({
+    where:{
+      role: "USER",
+    },
+    select:{
+      id: true,
+      username: true,
+      status: true,
+      profile: true,
+      chats: true,
+    },
+  });
+};
+
   module.exports = {
     createUser,
     getUserFromUsername,
@@ -172,4 +187,5 @@ const getRole = async (id) => {
     userExists,
     assignChatToUser,
     getRole,
+    getList,
   };

@@ -67,6 +67,7 @@ app.use("/login", routes.login);
 app.use("/logout", routes.logout);
 app.use("/chats", routes.chat);
 app.use("/messages", routes.message);
+app.use("/users", routes.user);
 
 // error page
 app.use((req, res) => res.status(404).json({

@@ -54,16 +54,13 @@ prismaSessionStore.prune();
 app.use(passport.initialize());
 app.use(passport.session());
 
-//you will have access to the currentUser variable in all of your views 
-/* app.use((req, res, next) => {   // this is working with ejs
-  res.locals.currentUser = req.user;
-  next();
-}); */
+
 
 // routes
 app.use("/", routes.homepage);
 app.use("/sign_up", routes.signup);
 app.use("/login", routes.login);
+app.use("/login_as_guest", routes.login_as_guest); 
 app.use("/logout", routes.logout);
 app.use("/chats", routes.chat);
 app.use("/messages", routes.message);

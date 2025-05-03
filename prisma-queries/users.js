@@ -128,6 +128,13 @@ async function createUser(data, hashedPassword) {
     return !user ? false : true;
   };
 
+  const usernameExists = async (username) => {
+    const user = await prisma.user.findUnique({
+      where: { username: username },
+    });
+    return !user ? false : true;
+  };
+
 const assignChatToUser = async (chatId, userId) => {
   let user = await prisma.user.findUnique({where:{id:userId}});
   switch(!user.chats){
@@ -185,6 +192,7 @@ const getList = async () => {
     setStatusOff,
     setStatusOn,
     userExists,
+    usernameExists,
     assignChatToUser,
     getRole,
     getList,

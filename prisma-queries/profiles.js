@@ -43,7 +43,46 @@ async function updateProfile(data) {
       });
 };
 
+async function getProfileById(id) { 
+  return await prisma.profile.findUnique({
+    where:{
+      userId: id,
+    },
+    select:{
+      id: true,
+      nametoshow: true,
+      avatar :{
+        select:{
+            id: true,
+            src_image : true,
+        },
+      },
+      bgcolor:{
+        select:{
+            id: true,
+            colorcode : true,
+        },
+      },
+    textcolor:{
+        select:{
+            id: true,
+            colorcode : true,
+        },
+    },
+    aboutme: true,  
+    },
+  });
+};
+
+async function getProfileOptions() { 
+  const colors = await prisma.color.findMany();
+  const avatars = await prisma.avatar.findMany();
+  return { available_colors:colors, available_avatars:avatars };
+};
+
 module.exports = {
     createProfile,
     updateProfile,
+    getProfileById,
+    getProfileOptions,
   };

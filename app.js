@@ -54,8 +54,6 @@ prismaSessionStore.prune();
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
 // routes
 app.use("/", routes.homepage);
 app.use("/sign_up", routes.signup);
@@ -65,6 +63,7 @@ app.use("/logout", routes.logout);
 app.use("/chats", routes.chat);
 app.use("/messages", routes.message);
 app.use("/users", routes.user);
+app.use("/profiles",routes.profile);
 
 // error page
 app.use((req, res) => res.status(404).json({

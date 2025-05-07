@@ -7,9 +7,7 @@ router.get("/:user_id", verifyToken, isAuth, isUser, controller.get);
 
 router.post("/:user_id", verifyToken, isAuth, controller.post);
 
-/* 
+router.put("/:user_id", verifyToken, isAuth, controller.put);
 
-
-router.put("/:user_id"); */
 
 module.exports = router;

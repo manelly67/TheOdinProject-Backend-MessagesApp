@@ -40,6 +40,18 @@ async function updateProfile(data) {
             textcolorId: data.textcolorId,
             aboutme: data.aboutme,
         },
+      })
+      .then(async (res) => {
+        await prisma.$disconnect();
+        return [res];
+      })
+      .catch(async (err) => {
+        if(err){
+          return errWrapper(err);
+        }else{
+          await prisma.$disconnect();
+          process.exit(1);
+        }
       });
 };
 

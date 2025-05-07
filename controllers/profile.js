@@ -77,4 +77,55 @@ const post = [
   },
 ];
 
-module.exports = { get, post };
+const put = [
+  validateText,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        message: "input data errors",
+        errors: errors.array(),
+      });
+    }
+    const { user_id } = req.params;
+    const { userId } = req.user;
+    switch (user_id === userId) {
+      case true:
+        {
+          const { nametoshow, aboutme, avatarId, bgcolorId, textcolorId } =
+            req.body;
+          const data = {
+            id: `${userId}_profile`,
+            nametoshow: nametoshow,
+            avatarId: avatarId,
+            bgcolorId: bgcolorId,
+            textcolorId: textcolorId,
+            aboutme: aboutme,
+            userId: userId,
+          };
+          const [updated] = await db_profiles.updateProfile(data);
+          if (updated) {
+            if (updated.err) {
+              return res.status(400).json({
+                message: "an error occurred",
+                errors: [updated],
+              });
+            } else {
+              const user_profile = await db_profiles.getProfileById(user_id);
+              return res.status(200).json({
+                user_profile: user_profile,
+              });
+            }
+          }
+        }
+        break;
+      case false:
+        return res.status(400).json({
+          message: "the user can modify only his own profile",
+        });
+    }
+  },
+];
+
+
+module.exports = { get, post, put };

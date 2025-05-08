@@ -1,3 +1,6 @@
+const db_chats = require("../prisma-queries/chat");
+const db_profiles = require("../prisma-queries/profiles");
+const { chat_model_id } = require("./chat_model_id");
 
 async function get(req, res) {
   return res.status(200).json({
@@ -15,13 +18,48 @@ async function isAuth(req, res) {
 }
 
 async function isGuest(req, res) {
-  // luego agregar aqui la data que podra ver el guest
-  
+  const chat_model = await db_chats.getChatObjById(chat_model_id);
   return res.status(200).json({
     isGuest: true,
     message: "welcome to the guest routes",
     user: req.user,
+    chat_model: chat_model,
   });
 }
 
-module.exports = { get, isAuth, isGuest };
+async function chatModel(req, res) {
+  const chat_model = await db_chats.getChatObjById(chat_model_id);
+  return res.status(200).json({
+    isGuest: true,
+    chat_model: chat_model,
+  });
+}
+
+async function getProfile(req, res) {
+  const { user_id } = req.params;
+  const { usersInChat } = await db_chats.getChatMembers(chat_model_id);
+  switch (usersInChat.length > 0) {
+    case true:
+      switch (usersInChat.includes(user_id)) {
+        case true:{
+          const user_profile = await db_profiles.getProfileById(user_id);
+          const profile_options = await db_profiles.getProfileOptions();
+          return res.status(200).json({
+            user_profile: user_profile,
+            profile_options: profile_options,
+          });
+        }
+        case false:
+          return res.status(400).json({
+            message: "you are not authorized to view this profile",
+          });
+      }
+      break;
+    case false:
+      return res.status(400).json({
+        message: "error no members in chat",
+      });
+  }
+}
+
+module.exports = { get, isAuth, isGuest, chatModel, getProfile };

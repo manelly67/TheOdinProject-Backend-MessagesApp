@@ -11,7 +11,7 @@ async function get(req, res) {
     switch (req.isAuthenticated()) {
       case false:
         res.json({
-          title: "BLOG | LOGIN",
+          title: "LOGIN",
           errors: req.session.messages,
         });
         break;

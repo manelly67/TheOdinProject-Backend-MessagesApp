@@ -179,7 +179,27 @@ const getList = async () => {
       id: true,
       username: true,
       status: true,
-      profile: true,
+      profile : {
+        select:{
+            nametoshow : true,
+            avatar :{
+                select:{
+                    src_image : true,
+                },
+            },    
+            bgcolor:{
+                select:{
+                    colorcode : true,
+                },
+            },
+            textcolor:{
+                select:{
+                    colorcode : true,
+                },
+            },
+            aboutme: true,
+        },
+      },
       chats: true,
     },
   });

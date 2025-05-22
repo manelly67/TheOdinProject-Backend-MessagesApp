@@ -3,16 +3,56 @@ const prisma = new PrismaClient();
 const { errWrapper } = require("./handle_prisma_errors");
 
 async function getAllChats(userId) {
-  return await prisma.user.findMany({
+  let chatsArray = [];
+  const search = await prisma.user.findUnique({
     where:{
         id : userId,
     },
     select:{
-        id : true,
         chats: true,
-        role: true,
     },
   });
+  const { chats } = search;
+  for(let i=0; i < chats.length; i++){
+    let chatId = chats[i];
+    const temp = await prisma.chat.findUnique({
+      where:{
+        id : chatId,
+     },
+      select:{
+        id: true,
+        createdAt: true,
+        usersInChat: true,
+        messages:{
+          select:{
+            id: true,
+            createdAt: true,
+            text: true,
+            userFrom: {
+              select:{
+                id: true,
+                username: true,
+                profile: true,
+                status: true,
+              },
+            },
+            userTo:{
+              select:{
+                id: true,
+                username: true,
+                profile: true,
+                status: true,
+              },
+            },
+          },
+        },
+      },
+    });
+   chatsArray.push(temp);
+  }
+   
+  return chatsArray;
+
 }
 
 async function createNew(data) {

@@ -122,10 +122,15 @@ async function createUser(data, hashedPassword) {
   };
 
   const userExists = async (id) => {
-    const user = await prisma.user.findUnique({
-      where: { id: id },
-    });
-    return !user ? false : true;
+    switch(id===null){
+      case true:
+        return false;
+      case false:
+        const user = await prisma.user.findUnique({
+          where: { id: id },
+        });
+        return !user ? false : true;
+    }
   };
 
   const usernameExists = async (username) => {

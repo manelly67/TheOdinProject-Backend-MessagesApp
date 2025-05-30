@@ -125,11 +125,12 @@ async function createUser(data, hashedPassword) {
     switch(id===null){
       case true:
         return false;
-      case false:
+      case false:{
         const user = await prisma.user.findUnique({
           where: { id: id },
         });
         return !user ? false : true;
+      }
     }
   };
 

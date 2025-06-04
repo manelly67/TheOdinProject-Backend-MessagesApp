@@ -29,9 +29,12 @@ async function isGuest(req, res) {
 }
 
 async function chatModel(req, res) {
+  const authData = req.user;
+  const { userId } = authData;
   const chat_model = await db_chats.getChatObjById(chat_model_id);
   return res.status(200).json({
     isGuest: true,
+    user: userId,
     chat_model: chat_model,
   });
 }

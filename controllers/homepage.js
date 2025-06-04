@@ -1,5 +1,6 @@
 const db_chats = require("../prisma-queries/chat");
 const db_profiles = require("../prisma-queries/profiles");
+const db_users = require("../prisma-queries/users");
 const { chat_model_id } = require("./chat_model_id");
 
 async function get(req, res) {
@@ -35,6 +36,14 @@ async function chatModel(req, res) {
   });
 }
 
+async function availableUsers(req, res) {
+  const list_of_users = await db_users.getListForGuest();
+  return res.status(200).json({
+    list_of_users: list_of_users,
+  });
+}
+
+
 async function getProfile(req, res) {
   const { user_id } = req.params;
   const { usersInChat } = await db_chats.getChatMembers(chat_model_id);
@@ -62,4 +71,4 @@ async function getProfile(req, res) {
   }
 }
 
-module.exports = { get, isAuth, isGuest, chatModel, getProfile };
+module.exports = { get, isAuth, isGuest, chatModel, availableUsers, getProfile };

@@ -211,6 +211,58 @@ const getList = async () => {
   });
 };
 
+const getListForGuest = async () => {
+  return await prisma.user.findMany({
+    where:{
+      OR:[
+        {
+          role: {
+            equals: 'GUEST',
+          },
+        },
+        {
+          id: {
+            equals: '961e709c-41c9-4461-b100-26f3b3d03664',
+          },
+        },
+        {
+          id: {
+            equals: '540a0c33-dfc7-4878-a062-464e716ab994',
+          },
+        },
+      ],
+    },
+    select:{
+      id: true,
+      username: true,
+      status: true,
+      profile : {
+        select:{
+            nametoshow : true,
+            avatar :{
+                select:{
+                    src_image : true,
+                },
+            },    
+            bgcolor:{
+                select:{
+                    colorcode : true,
+                },
+            },
+            textcolor:{
+                select:{
+                    colorcode : true,
+                },
+            },
+            aboutme: true,
+        },
+      },
+      chats: true,
+    },
+  });
+};
+
+
   module.exports = {
     createUser,
     getUserFromUsername,
@@ -222,4 +274,5 @@ const getList = async () => {
     assignChatToUser,
     getRole,
     getList,
+    getListForGuest,
   };

@@ -19,6 +19,14 @@ router.get(
 );
 
 router.get(
+  "/isguest/available_users",
+  verifyToken,
+  isAuth,
+  isGuest,
+  controller.availableUsers
+);
+
+router.get(
   "/isguest/profile/:user_id",
   verifyToken,
   isAuth,

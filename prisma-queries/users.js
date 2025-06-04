@@ -211,7 +211,7 @@ const getList = async () => {
   });
 };
 
-const getListForGuest = async () => {
+const getListForGuest = async (chat_model_id) => {
   return await prisma.user.findMany({
     where:{
       OR:[
@@ -221,13 +221,8 @@ const getListForGuest = async () => {
           },
         },
         {
-          id: {
-            equals: '961e709c-41c9-4461-b100-26f3b3d03664',
-          },
-        },
-        {
-          id: {
-            equals: '540a0c33-dfc7-4878-a062-464e716ab994',
+          chats: {
+            has: chat_model_id,
           },
         },
       ],

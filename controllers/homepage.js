@@ -37,8 +37,9 @@ async function chatModel(req, res) {
 }
 
 async function availableUsers(req, res) {
-  const list_of_users = await db_users.getListForGuest();
+  const list_of_users = await db_users.getListForGuest(chat_model_id);
   return res.status(200).json({
+    isGuest: true,
     list_of_users: list_of_users,
   });
 }

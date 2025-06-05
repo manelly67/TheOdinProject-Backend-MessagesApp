@@ -185,6 +185,7 @@ const getList = async () => {
       id: true,
       username: true,
       status: true,
+      role: true,
       profile : {
         select:{
             nametoshow : true,
@@ -231,6 +232,7 @@ const getListForGuest = async (chat_model_id) => {
       id: true,
       username: true,
       status: true,
+      role: true,
       profile : {
         select:{
             nametoshow : true,

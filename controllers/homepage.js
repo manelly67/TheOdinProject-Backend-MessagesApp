@@ -51,9 +51,13 @@ async function availableUsers(req, res) {
 async function getProfile(req, res) {
   const { user_id } = req.params;
   const { usersInChat } = await db_chats.getChatMembers(chat_model_id);
-  switch (usersInChat.length > 0) {
+  let allowed_profiles =  [...usersInChat]; 
+  const authData = req.user;
+  const { userId } = authData; // verified user
+  allowed_profiles.push(userId);
+  switch (allowed_profiles.length > 0) {
     case true:
-      switch (usersInChat.includes(user_id)) {
+      switch (allowed_profiles.includes(user_id)) {
         case true:{
           const user_profile = await db_profiles.getProfileById(user_id);
           const profile_options = await db_profiles.getProfileOptions();

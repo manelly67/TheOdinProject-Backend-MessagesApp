@@ -15,7 +15,7 @@ const app = express();
 /* app.use(cors()); */
 
 app.use(cors({
-    origin: "https://whitedove.netlify.app/",
+    origin: "https://whitedove.netlify.app",
     allowedHeaders:['Content-Type', 'Authorization','Connection'],
     credentials:true,
   }));

@@ -7,4 +7,5 @@
 # curl request
 some-request.txt
 
-
+# /generated/prisma
+/generated/prisma

@@ -45,3 +45,7 @@ The app can be accessed in guest mode and in this way it will be possible:
 
 This server is accessed through HTTP requests made from a frontend designed in React.<br>
 The url frontend address is https://whitedove.netlify.app
+
+### Repositories ###
+Backend: https://github.com/manelly67/TheOdinProject-Backend-MessagesApp <br>
+Frontend: https://github.com/manelly67/TheOdinProject-Frontend-MessageApp

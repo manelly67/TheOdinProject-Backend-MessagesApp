@@ -15,21 +15,21 @@ The app includes the following core functionality:
 
 ### Authorization ###
 
-A sign up route for create users
-A login route handled with Passport.js that grants a jwt token for 1 day
-A login as guest route that creates a guest user to view limited content
+- A sign up route for create users
+- A login route handled with Passport.js that grants a jwt token for 1 day
+- A login as guest route that creates a guest user to view limited content
 
 ### Sending messages to another user ###
 
-Each user can create chats to write message with another user. 
-Only members of each chat can write and view messages within the chat.
-Users can see the profiles of the other chat members.
-Because the REST API backend cannot handle real time updates, a button was created inside the chat component to refresh the data.
+- Each user can create chats to write message with another user. 
+- Only members of each chat can write and view messages within the chat.
+- Users can see the profiles of the other chat members.
+- Because the REST API backend cannot handle real time updates, a button was created inside the chat component to refresh the data.
 
 ### Customizing a user profile ###
 
-Users will be able to customize their profiles.
-The available avatars and colors are limited to a few options stored in the database.
+- Users will be able to customize their profiles.
+- The available avatars and colors are limited to a few options stored in the database.
 
 ### Guest mode access ###
 
@@ -43,5 +43,5 @@ The app can be accessed in guest mode and in this way it will be possible:
 
 ### Access ###
 
-This server is accessed through HTTP requests made from a frontend designed in React.
+This server is accessed through HTTP requests made from a frontend designed in React./
 The url frontend address is https://whitedove.netlify.app/

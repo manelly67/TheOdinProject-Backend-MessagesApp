@@ -43,5 +43,5 @@ The app can be accessed in guest mode and in this way it will be possible:
 
 ### Access ###
 
-This server is accessed through HTTP requests made from a frontend designed in React./
-The url frontend address is https://whitedove.netlify.app/
+This server is accessed through HTTP requests made from a frontend designed in React.<br>
+The url frontend address is https://whitedove.netlify.app

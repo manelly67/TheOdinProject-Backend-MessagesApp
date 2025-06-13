@@ -49,3 +49,6 @@ The url frontend address is https://whitedove.netlify.app
 ### Repositories ###
 Backend: https://github.com/manelly67/TheOdinProject-Backend-MessagesApp <br>
 Frontend: https://github.com/manelly67/TheOdinProject-Frontend-MessageApp
+
+#### Credits: ####
+The avatars archived in the database were half created by chatGpt and half obtained from the web as public domain. And they are hosted at Cloudinary.com

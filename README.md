@@ -53,4 +53,11 @@ Backend: https://github.com/manelly67/TheOdinProject-Backend-MessagesApp <br>
 Frontend: https://github.com/manelly67/TheOdinProject-Frontend-MessageApp
 
 #### Credits: ####
-The avatars archived in the database were half created by chatGpt and half obtained from the web as public domain. And they are hosted at Cloudinary.com
+The avatars archived in the database were half created by chatGpt and half obtained from the web as public domain.
+<br>
+The image are hosted in Cloudinary.com
+<br>
+The server is hosted in render.com
+<br>
+The database is hosted in neon.tech
+<br>

@@ -15,9 +15,13 @@ The app includes the following core functionality:
 
 ### Authorization ###
 
-- A sign up route for create users
+- A sign up route for create users. The server uses Express-Validator to validate data input in the sign-up route and Prisma to ensure no duplicate values by enforcing constraints.
+- The password is stored as a hash using the bcryptjs library, ensuring it is securely encrypted and not stored in plain text.
 - A login route handled with Passport.js that grants a jwt token for 1 day
 - A login as guest route that creates a guest user to view limited content
+
+### Middlewares for Token Validation and User Check ###
+Middleware functions was used in several routes to handle requests, in order to validate tokens and check if a user is authenticated, a guest, or a regular user.
 
 ### Sending messages to another user ###
 
@@ -38,7 +42,6 @@ The app can be accessed in guest mode and in this way it will be possible:
 - be able to see the chat model.
 - be able to see the profiles of the users of the chat model.
 - guest can customize their profiles.
-
 - guests will not be able to start a new chat or write messages.
 
 ### Access ###
